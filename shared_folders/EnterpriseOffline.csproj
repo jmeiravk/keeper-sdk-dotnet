@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <FileVersion>1.0.0.1</FileVersion>
+    <PackageId>SharedFolderPermissions</PackageId>
+    <Authors>Keeper Security Inc.</Authors>
+    <Product>Shared Folder Permissions</Product>
+    <RootNamespace>Entgerprise.Offline</RootNamespace>
+    <AssemblyName>Entgerprise.Offline</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.9.1" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.116" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\cli\cli.csproj" />
+    <ProjectReference Include="..\KeeperSdk\KeeperSdk.csproj" />
+    <ProjectReference Include="..\OfflineStorageSqlite\OfflineStorageSqlite.csproj" />
+  </ItemGroup>
+
+</Project>

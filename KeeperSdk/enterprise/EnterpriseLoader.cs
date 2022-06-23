@@ -43,7 +43,8 @@ namespace KeeperSecurity.Enterprise
         /// <exclude/>
         public byte[] EcPrivateKey { get; set; }
 
-        private byte[] _continuationToken;
+        /// <exclude/>
+        public byte[] ContinuationToken { get; set; }
 
         /// <summary>
         /// Initialises EnterpriseLoader instance.
@@ -51,6 +52,7 @@ namespace KeeperSecurity.Enterprise
         /// <param name="auth">Keeper Authentication</param>
         /// <param name="plugins">Enterprise data plugins</param>
         /// <param name="treeKey">Enterprise tree key. Optional.</param>
+        /// <param name="continuationToken">Continuation token. Optional.</param>
         /// <seealso cref="EnterpriseData"/>
         /// <seealso cref="RoleData"/>
         /// <seealso cref="DeviceApprovalData"/>
@@ -59,7 +61,7 @@ namespace KeeperSecurity.Enterprise
         {
             Auth = auth;
             TreeKey = treeKey;
-            _continuationToken = new byte[0];
+            ContinuationToken = new byte[0];
 
             foreach (var plugin in plugins)
             {
@@ -139,7 +141,7 @@ namespace KeeperSecurity.Enterprise
             {
                 var rrq = new EnterpriseDataRequest
                 {
-                    ContinuationToken = Google.Protobuf.ByteString.CopyFrom(_continuationToken)
+                    ContinuationToken = Google.Protobuf.ByteString.CopyFrom(ContinuationToken)
                 };
                 var rrs = await Auth.ExecuteAuthRest<EnterpriseDataRequest, EnterpriseDataResponse>("enterprise/get_enterprise_data_for_user", rrq);
                 if (rrs.CacheStatus == CacheStatus.Clear)
@@ -156,7 +158,7 @@ namespace KeeperSecurity.Enterprise
                 {
                 }
                 done = !rrs.HasMore;
-                _continuationToken = rrs.ContinuationToken.ToByteArray();
+                ContinuationToken = rrs.ContinuationToken.ToByteArray();
                 if (string.IsNullOrEmpty(EnterpriseName) && rrs.GeneralData != null)
                 {
                     EnterpriseName = rrs.GeneralData.EnterpriseName;
