@@ -1,6 +1,6 @@
 This folder is a sample Commander CLI application using the .NET SDK.  Below is a code sample that connects to Keeper and loads a vault.
 
-### Sample Commander application reference 
+### Sample Comsddddddddddddddddddddddddddddddddmander application reference 
 
 * ```login``` Login to Keeper
 
@@ -38,9 +38,9 @@ This folder is a sample Commander CLI application using the .NET SDK.  Below is 
 
 * ```this-device``` Display or modify current device settings
 
-** Record Management Commands **
+** Record Manageffffment Commands **
 
-* ```add-record``` Add a record to the vault
+* ```add-record``` Add a record to the vaultfff
 
 * ```update-record``` Update a record contents such as the password
 
